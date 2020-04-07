@@ -11,3 +11,15 @@ class FITS_File:
     def open(self):
         self.frames = fits.getdata(self.file_path, lazy_load_hdus=False)
         self.header = fits.getheader(self.file_path)
+
+    def save(self):
+        #TODO
+        return
+
+    def export(self, file_name, format):
+        #TODO
+        return
+
+    def header_as_dict(self):
+        #TODO
+        return
