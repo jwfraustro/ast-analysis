@@ -2,6 +2,7 @@ from ast_analysis.resources.forms.py import main_window
 from ast_analysis.common.scripts.io import open_fits_file
 
 from PyQt5.QtWidgets import QMainWindow, QFileDialog, QMessageBox
+from PyQt5.QtGui import QImage, QPixmap
 
 
 class MainWindow(QMainWindow, main_window.Ui_MainWindow):
@@ -12,7 +13,7 @@ class MainWindow(QMainWindow, main_window.Ui_MainWindow):
 
         self.setup_menu_actions()
 
-        self.current_fits_array = None
+        self.fits_files = []
 
     def create_new_project(self):
         # TODO
@@ -189,14 +190,27 @@ class MainWindow(QMainWindow, main_window.Ui_MainWindow):
     def open_fits_file(self):
         # TODO
 
-        file_path = QFileDialog.getOpenFileName(self, "Open FITS File", filter="*.fits")
+        file_path, _ = QFileDialog.getOpenFileName(self, "Open FITS File", filter="*.fits")
 
         array, headers, msg = open_fits_file(file_path)
 
         if msg:
             QMessageBox.information(self, "Error Opening FITS file", msg, QMessageBox.Ok)
 
-        print(headers)
+        image = {'file_path':file_path,'array':array, 'headers':headers}
+
+        self.fits_files.append(image)
+
+        self.display_fits_file(image)
+
+        return
+
+    def display_fits_file(self, file):
+
+        #TODO
+
+        q_image=QImage(file['array'], file['array'].shape[0], file['array'].shape[1])
+        self.img_lbl.setPixmap(QPixmap.fromImage(q_image))
 
         return
 

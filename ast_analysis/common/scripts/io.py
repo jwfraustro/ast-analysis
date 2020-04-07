@@ -35,9 +35,8 @@ def export_settings(settings):
 
 
 def open_fits_file(file_path):
-    # TODO: Error opening file OSError
     msg = None
-    fits_data = fits.getdata(file_path, lazy_load_hdus=False)
+    fits_data = fits.getdata(file_path, lazy_load_hdus=False)[0]
     headers = fits.getheader(file_path)
 
     return fits_data, headers, msg
