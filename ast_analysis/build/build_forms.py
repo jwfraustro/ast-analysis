@@ -3,8 +3,8 @@ import os
 from pathlib import Path
 from glob import glob
 
-QT_FORMS_PATH = "../resources/forms/qt_forms/"
-BUILD_PATH = "../resources/forms/"
+QT_FORMS_PATH = "../resources/forms/qt/"
+BUILD_PATH = "../resources/forms/py/"
 
 
 def get_qt_forms():

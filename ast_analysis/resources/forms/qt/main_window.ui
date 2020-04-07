@@ -1,0 +1,915 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>667</width>
+    <height>569</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Visual FITS Analyzer</string>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>667</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNew_Project"/>
+    <addaction name="actionOpen_Project"/>
+    <addaction name="actionSave_Project"/>
+    <addaction name="actionSave_Project_As"/>
+    <addaction name="actionClose_Project"/>
+    <addaction name="separator"/>
+    <addaction name="actionOpen_Settings"/>
+    <addaction name="actionImport_Settings"/>
+    <addaction name="actionExport_Settings"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit_Program"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionUndo_Edit"/>
+    <addaction name="actionRedo_Edit"/>
+    <addaction name="actionRevert_Changes"/>
+    <addaction name="separator"/>
+    <addaction name="actionEditCut_File"/>
+    <addaction name="actionEditCopy_File"/>
+    <addaction name="actionEditPaste_File"/>
+    <addaction name="separator"/>
+    <addaction name="actionRename_File"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <widget class="QMenu" name="menuZoom">
+     <property name="title">
+      <string>Zoom</string>
+     </property>
+     <addaction name="actionResetView_Zoom"/>
+     <addaction name="actionViewZoomIn"/>
+     <addaction name="actionViewZoomOut"/>
+     <addaction name="actionViewZoomToSelection"/>
+     <addaction name="separator"/>
+     <addaction name="actionViewFit_to_Window"/>
+     <addaction name="separator"/>
+     <addaction name="actionViewZoom1600"/>
+     <addaction name="actionViewZoom800"/>
+     <addaction name="actionViewZoom400"/>
+     <addaction name="actionViewZoom200"/>
+     <addaction name="actionViewZoom100"/>
+     <addaction name="actionViewZoom50"/>
+     <addaction name="actionViewZoom25"/>
+     <addaction name="actionViewZoom12"/>
+     <addaction name="actionViewZoom6"/>
+     <addaction name="separator"/>
+     <addaction name="actionViewCustomZoom"/>
+    </widget>
+    <widget class="QMenu" name="menuFlip_Rotate">
+     <property name="title">
+      <string>Flip / Rotate</string>
+     </property>
+     <addaction name="actionResetViewFlipRotate"/>
+     <addaction name="separator"/>
+     <addaction name="actionViewFlip_Horizontal"/>
+     <addaction name="actionViewFlip_Vertical"/>
+     <addaction name="separator"/>
+     <addaction name="actionViewRotate_15_CW"/>
+     <addaction name="actionViewRotate_15_CCW"/>
+     <addaction name="actionViewRotate_90_CW"/>
+     <addaction name="actionViewRotate_90_CCW"/>
+     <addaction name="actionViewRotate_180"/>
+     <addaction name="separator"/>
+     <addaction name="actionViewOtherRotateAngle"/>
+    </widget>
+    <widget class="QMenu" name="menuScale">
+     <property name="title">
+      <string>Scale</string>
+     </property>
+     <addaction name="actionViewScaleLinear"/>
+     <addaction name="actionViewScaleLogarithmic"/>
+     <addaction name="actionViewScalePower"/>
+     <addaction name="actionViewScaleSquare_Root"/>
+     <addaction name="actionViewScaleSquared"/>
+     <addaction name="actionViewScaleasinh"/>
+     <addaction name="actionViewScalesinh"/>
+     <addaction name="actionViewScaleHistogram"/>
+     <addaction name="actionViewScaleMin_Max"/>
+     <addaction name="actionViewScaleZ_Scale"/>
+    </widget>
+    <widget class="QMenu" name="menuColor_Space">
+     <property name="title">
+      <string>Color Space</string>
+     </property>
+     <widget class="QMenu" name="menuColorspace_Settings">
+      <property name="title">
+       <string>Colorspace Settings...</string>
+      </property>
+      <addaction name="actionColorspaceEdit"/>
+      <addaction name="actionColorspaceSave"/>
+      <addaction name="actionColorspaceLoad"/>
+     </widget>
+     <addaction name="actionSetColorGreyscale"/>
+     <addaction name="actionSetColorBlack_Body"/>
+     <addaction name="actionSetColorHeatmap"/>
+     <addaction name="actionSetColorCool"/>
+     <addaction name="actionSetColorRainbow"/>
+     <addaction name="separator"/>
+     <addaction name="menuColorspace_Settings"/>
+    </widget>
+    <widget class="QMenu" name="menuTool_Windows">
+     <property name="title">
+      <string>Tool Windows</string>
+     </property>
+     <addaction name="actionViewProject_Panel"/>
+     <addaction name="actionViewInfo_Panel"/>
+     <addaction name="actionViewThumbnail"/>
+     <addaction name="actionViewMagnifier_View"/>
+     <addaction name="actionViewColor_Map"/>
+     <addaction name="actionViewTool_Box"/>
+    </widget>
+    <widget class="QMenu" name="menuFrames">
+     <property name="title">
+      <string>Frames</string>
+     </property>
+     <addaction name="actionViewSingleFrames"/>
+     <addaction name="actionViewTiledFrames"/>
+    </widget>
+    <addaction name="menuTool_Windows"/>
+    <addaction name="separator"/>
+    <addaction name="menuFrames"/>
+    <addaction name="separator"/>
+    <addaction name="menuZoom"/>
+    <addaction name="menuFlip_Rotate"/>
+    <addaction name="actionViewCenterImage"/>
+    <addaction name="actionViewCenterSelection"/>
+    <addaction name="separator"/>
+    <addaction name="actionViewFullscreen"/>
+    <addaction name="separator"/>
+    <addaction name="menuColor_Space"/>
+    <addaction name="menuScale"/>
+   </widget>
+   <widget class="QMenu" name="menuProcess">
+    <property name="title">
+     <string>Process</string>
+    </property>
+    <widget class="QMenu" name="menuNoise_Removal">
+     <property name="title">
+      <string>Noise Removal...</string>
+     </property>
+     <addaction name="actionNR_MedComb"/>
+     <addaction name="actionNR_NormMedComb"/>
+     <addaction name="actionNR_ManBackground"/>
+    </widget>
+    <widget class="QMenu" name="menuBad_Pixel_Removal">
+     <property name="title">
+      <string>Bad Pixels...</string>
+     </property>
+     <addaction name="actionBP_Manual_Removal"/>
+     <addaction name="actionBP_Threshold_Removal"/>
+     <addaction name="actionBP_Outlier_Removal"/>
+    </widget>
+    <widget class="QMenu" name="menuIgnore_Regions">
+     <property name="title">
+      <string>Ignore Regions...</string>
+     </property>
+     <addaction name="actionAddIgnoreRegion"/>
+     <addaction name="actionDeleteIgnoreRegion"/>
+    </widget>
+    <widget class="QMenu" name="menuRegions_of_Interest">
+     <property name="title">
+      <string>Regions of Interest...</string>
+     </property>
+     <addaction name="actionAddInterestRegion"/>
+     <addaction name="actionDeleteInterestRegion"/>
+    </widget>
+    <widget class="QMenu" name="menuScaling">
+     <property name="title">
+      <string>Scaling</string>
+     </property>
+     <addaction name="actionScale_TileStripe"/>
+     <addaction name="actionScale_SplineTerp"/>
+    </widget>
+    <addaction name="menuNoise_Removal"/>
+    <addaction name="menuBad_Pixel_Removal"/>
+    <addaction name="menuIgnore_Regions"/>
+    <addaction name="menuRegions_of_Interest"/>
+    <addaction name="menuScaling"/>
+   </widget>
+   <widget class="QMenu" name="menuAnalysis">
+    <property name="title">
+     <string>Analysis</string>
+    </property>
+    <widget class="QMenu" name="menuSpectrum_Matching">
+     <property name="title">
+      <string>Spectral Line Matching</string>
+     </property>
+     <addaction name="actionSpectrum_Automatic"/>
+     <addaction name="actionSpectrum_Manual"/>
+    </widget>
+    <widget class="QMenu" name="menuMean_Values">
+     <property name="title">
+      <string>Mean Values</string>
+     </property>
+     <addaction name="actionMean_Horizontal"/>
+     <addaction name="actionMean_Vertical"/>
+     <addaction name="separator"/>
+     <addaction name="actionMean_Custom"/>
+    </widget>
+    <widget class="QMenu" name="menuMedian_Values">
+     <property name="title">
+      <string>Median Values</string>
+     </property>
+     <addaction name="actionMedian_Horizontal"/>
+     <addaction name="actionMedian_Vertical"/>
+     <addaction name="separator"/>
+     <addaction name="actionMedian_Custom"/>
+    </widget>
+    <addaction name="menuSpectrum_Matching"/>
+    <addaction name="actionViewMeasurements"/>
+    <addaction name="separator"/>
+    <addaction name="menuMean_Values"/>
+    <addaction name="menuMedian_Values"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionHelp"/>
+    <addaction name="actionGetting_Started"/>
+    <addaction name="separator"/>
+    <addaction name="actionSubmit_Bug_Report_Feedback"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menuFITS">
+    <property name="title">
+     <string>FITS</string>
+    </property>
+    <widget class="QMenu" name="menuExport">
+     <property name="title">
+      <string>Export As...</string>
+     </property>
+     <addaction name="actionExportPNG"/>
+     <addaction name="actionExportJPG"/>
+     <addaction name="actionExportGIF"/>
+    </widget>
+    <widget class="QMenu" name="menuHeaders">
+     <property name="title">
+      <string>Headers...</string>
+     </property>
+     <addaction name="actionHeaders_View"/>
+     <addaction name="actionHeaders_Edit"/>
+    </widget>
+    <widget class="QMenu" name="menuTransform">
+     <property name="title">
+      <string>Transform</string>
+     </property>
+     <addaction name="actionFITS_FlipHorizontal"/>
+     <addaction name="actionFITS_FlipVertical"/>
+     <addaction name="separator"/>
+     <addaction name="actionFITS_Rotate_90_CW"/>
+     <addaction name="actionFITS_Rotate_90_CCW"/>
+     <addaction name="actionFITS_Rotate_180"/>
+    </widget>
+    <addaction name="actionNew_FITS"/>
+    <addaction name="actionFITS_Open"/>
+    <addaction name="actionFITS_Save"/>
+    <addaction name="actionFITS_SaveAs"/>
+    <addaction name="menuExport"/>
+    <addaction name="separator"/>
+    <addaction name="menuTransform"/>
+    <addaction name="actionFITS_Crop_to_Selection"/>
+    <addaction name="separator"/>
+    <addaction name="menuHeaders"/>
+    <addaction name="separator"/>
+    <addaction name="actionFITS_Close"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuView"/>
+   <addaction name="menuFITS"/>
+   <addaction name="menuProcess"/>
+   <addaction name="menuAnalysis"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <action name="actionNew_Project">
+   <property name="text">
+    <string>New Project</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>New...</string>
+   </property>
+  </action>
+  <action name="actionOpen_Project">
+   <property name="text">
+    <string>Open Project</string>
+   </property>
+  </action>
+  <action name="actionSave_Project">
+   <property name="text">
+    <string>Save Project</string>
+   </property>
+  </action>
+  <action name="actionSave_Project_As">
+   <property name="text">
+    <string>Save Project As</string>
+   </property>
+  </action>
+  <action name="actionClose_Project">
+   <property name="text">
+    <string>Close Project</string>
+   </property>
+  </action>
+  <action name="actionOpen_Settings">
+   <property name="text">
+    <string>Settings...</string>
+   </property>
+  </action>
+  <action name="actionImport_Settings">
+   <property name="text">
+    <string>Import Settings</string>
+   </property>
+  </action>
+  <action name="actionExport_Settings">
+   <property name="text">
+    <string>Export Settings</string>
+   </property>
+  </action>
+  <action name="actionExit_Program">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionNew_FITS">
+   <property name="text">
+    <string>New...</string>
+   </property>
+  </action>
+  <action name="actionFITS_Open">
+   <property name="text">
+    <string>Open...</string>
+   </property>
+  </action>
+  <action name="actionFITS_Save">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionFITS_SaveAs">
+   <property name="text">
+    <string>Save As</string>
+   </property>
+  </action>
+  <action name="actionas_PNG">
+   <property name="text">
+    <string>as PNG</string>
+   </property>
+  </action>
+  <action name="actionExportPNG">
+   <property name="text">
+    <string>PNG</string>
+   </property>
+  </action>
+  <action name="actionExportJPG">
+   <property name="text">
+    <string>JPG</string>
+   </property>
+  </action>
+  <action name="actionExportGIF">
+   <property name="text">
+    <string>GIF</string>
+   </property>
+  </action>
+  <action name="actionNR_MedComb">
+   <property name="text">
+    <string>Median Combination</string>
+   </property>
+  </action>
+  <action name="actionNR_NormMedComb">
+   <property name="text">
+    <string>Norm. Median Combination</string>
+   </property>
+  </action>
+  <action name="actionBP_Manual_Removal">
+   <property name="text">
+    <string>Manual Removal</string>
+   </property>
+  </action>
+  <action name="actionBP_Threshold_Removal">
+   <property name="text">
+    <string>Threshold Removal</string>
+   </property>
+  </action>
+  <action name="actionBP_Outlier_Removal">
+   <property name="text">
+    <string>Outlier Removal</string>
+   </property>
+  </action>
+  <action name="actionAddIgnoreRegion">
+   <property name="text">
+    <string>Add Region</string>
+   </property>
+  </action>
+  <action name="actionDeleteIgnoreRegion">
+   <property name="text">
+    <string>Delete Region</string>
+   </property>
+  </action>
+  <action name="actionNR_ManBackground">
+   <property name="text">
+    <string>Manual Background Removal</string>
+   </property>
+  </action>
+  <action name="actionEdit_Headers">
+   <property name="text">
+    <string>Edit Headers</string>
+   </property>
+  </action>
+  <action name="actionAddInterestRegion">
+   <property name="text">
+    <string>Add Region</string>
+   </property>
+  </action>
+  <action name="actionDeleteInterestRegion">
+   <property name="text">
+    <string>Delete Region</string>
+   </property>
+  </action>
+  <action name="actionSpectrum_Automatic">
+   <property name="text">
+    <string>Automatic</string>
+   </property>
+  </action>
+  <action name="actionSpectrum_Manual">
+   <property name="text">
+    <string>Manual</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="text">
+    <string>Help</string>
+   </property>
+  </action>
+  <action name="actionGetting_Started">
+   <property name="text">
+    <string>Getting Started</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About...</string>
+   </property>
+  </action>
+  <action name="actionSubmit_Bug_Report_Feedback">
+   <property name="text">
+    <string>Submit Bug Report/Feedback...</string>
+   </property>
+  </action>
+  <action name="actionFITS_Close">
+   <property name="text">
+    <string>Close File</string>
+   </property>
+  </action>
+  <action name="actionHeaders_View">
+   <property name="text">
+    <string>View</string>
+   </property>
+  </action>
+  <action name="actionHeaders_Edit">
+   <property name="text">
+    <string>Edit</string>
+   </property>
+  </action>
+  <action name="actionUndo_Edit">
+   <property name="text">
+    <string>Undo</string>
+   </property>
+  </action>
+  <action name="actionRedo_Edit">
+   <property name="text">
+    <string>Redo</string>
+   </property>
+  </action>
+  <action name="actionRevert_Changes">
+   <property name="text">
+    <string>Revert Changes</string>
+   </property>
+  </action>
+  <action name="actionEditCut_File">
+   <property name="text">
+    <string>Cut</string>
+   </property>
+  </action>
+  <action name="actionEditCopy_File">
+   <property name="text">
+    <string>Copy</string>
+   </property>
+  </action>
+  <action name="actionEditPaste_File">
+   <property name="text">
+    <string>Paste</string>
+   </property>
+  </action>
+  <action name="actionEditDelete">
+   <property name="text">
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionRename_File">
+   <property name="text">
+    <string>Rename</string>
+   </property>
+  </action>
+  <action name="actionViewCenterImage">
+   <property name="text">
+    <string>Center Image in Window</string>
+   </property>
+  </action>
+  <action name="actionViewFullscreen">
+   <property name="text">
+    <string>Fullscreen</string>
+   </property>
+  </action>
+  <action name="actionResetView_Zoom">
+   <property name="text">
+    <string>Reset Zoom</string>
+   </property>
+  </action>
+  <action name="actionViewZoomIn">
+   <property name="text">
+    <string>Zoom +</string>
+   </property>
+  </action>
+  <action name="actionViewZoomOut">
+   <property name="text">
+    <string>Zoom -</string>
+   </property>
+  </action>
+  <action name="actionViewZoomToSelection">
+   <property name="text">
+    <string>Zoom on Selection</string>
+   </property>
+  </action>
+  <action name="actionViewCenterSelection">
+   <property name="text">
+    <string>Center Selection in Window</string>
+   </property>
+  </action>
+  <action name="actionViewFit_to_Window">
+   <property name="text">
+    <string>Fit to Window</string>
+   </property>
+  </action>
+  <action name="actionViewZoom1600">
+   <property name="text">
+    <string>16:1 (1600%)</string>
+   </property>
+  </action>
+  <action name="actionViewZoom800">
+   <property name="text">
+    <string>8:1 (800%)</string>
+   </property>
+  </action>
+  <action name="actionViewZoom400">
+   <property name="text">
+    <string>4:1 (400%)</string>
+   </property>
+  </action>
+  <action name="actionViewZoom200">
+   <property name="text">
+    <string>2:1 (200%)</string>
+   </property>
+  </action>
+  <action name="actionViewZoom100">
+   <property name="text">
+    <string>1:1 (100%)</string>
+   </property>
+  </action>
+  <action name="actionViewZoom50">
+   <property name="text">
+    <string>1:2 (50%)</string>
+   </property>
+  </action>
+  <action name="actionViewZoom25">
+   <property name="text">
+    <string>1:4 (25%)</string>
+   </property>
+  </action>
+  <action name="actionViewZoom12">
+   <property name="text">
+    <string>1:8 (12.5%)</string>
+   </property>
+  </action>
+  <action name="actionViewZoom6">
+   <property name="text">
+    <string>1:16 (6.25%)</string>
+   </property>
+  </action>
+  <action name="actionViewCustomZoom">
+   <property name="text">
+    <string>Custom Zoom Factor...</string>
+   </property>
+  </action>
+  <action name="actionResetViewFlipRotate">
+   <property name="text">
+    <string>Reset Flip / Rotate</string>
+   </property>
+  </action>
+  <action name="actionViewFlip_Horizontal">
+   <property name="text">
+    <string>Flip Horizontal</string>
+   </property>
+  </action>
+  <action name="actionViewFlip_Vertical">
+   <property name="text">
+    <string>Flip Vertical</string>
+   </property>
+  </action>
+  <action name="actionViewRotate_15_CW">
+   <property name="text">
+    <string>Rotate 15° CW</string>
+   </property>
+  </action>
+  <action name="actionViewRotate_15_CCW">
+   <property name="text">
+    <string>Rotate 15° CCW</string>
+   </property>
+  </action>
+  <action name="actionViewRotate_90_CW">
+   <property name="text">
+    <string>Rotate 90° CW</string>
+   </property>
+  </action>
+  <action name="actionViewRotate_90_CCW">
+   <property name="text">
+    <string>Rotate 90° CCW</string>
+   </property>
+  </action>
+  <action name="actionViewRotate_180">
+   <property name="text">
+    <string>Rotate 180°</string>
+   </property>
+  </action>
+  <action name="actionViewOtherRotateAngle">
+   <property name="text">
+    <string>Other Rotation Angle...</string>
+   </property>
+  </action>
+  <action name="actionViewScaleLinear">
+   <property name="text">
+    <string>Linear</string>
+   </property>
+  </action>
+  <action name="actionViewScaleLogarithmic">
+   <property name="text">
+    <string>Logarithmic</string>
+   </property>
+  </action>
+  <action name="actionViewScalePower">
+   <property name="text">
+    <string>Power</string>
+   </property>
+  </action>
+  <action name="actionViewScaleSquare_Root">
+   <property name="text">
+    <string>Square Root</string>
+   </property>
+  </action>
+  <action name="actionViewScaleSquared">
+   <property name="text">
+    <string>Squared</string>
+   </property>
+  </action>
+  <action name="actionViewScaleasinh">
+   <property name="text">
+    <string>asinh</string>
+   </property>
+  </action>
+  <action name="actionViewScalesinh">
+   <property name="text">
+    <string>sinh</string>
+   </property>
+  </action>
+  <action name="actionViewScaleHistogram">
+   <property name="text">
+    <string>Histogram</string>
+   </property>
+  </action>
+  <action name="actionViewScaleMin_Max">
+   <property name="text">
+    <string>Min/Max</string>
+   </property>
+  </action>
+  <action name="actionViewScaleZ_Scale">
+   <property name="text">
+    <string>Z-Scale</string>
+   </property>
+  </action>
+  <action name="actionSetColorGreyscale">
+   <property name="text">
+    <string>Greyscale</string>
+   </property>
+  </action>
+  <action name="actionA">
+   <property name="text">
+    <string>A</string>
+   </property>
+  </action>
+  <action name="actionB">
+   <property name="text">
+    <string>B</string>
+   </property>
+  </action>
+  <action name="actionSetColorBlack_Body">
+   <property name="text">
+    <string>Black Body</string>
+   </property>
+  </action>
+  <action name="actionSetColorHeatmap">
+   <property name="text">
+    <string>Heat</string>
+   </property>
+  </action>
+  <action name="actioni8">
+   <property name="text">
+    <string>i8</string>
+   </property>
+  </action>
+  <action name="actionaips0">
+   <property name="text">
+    <string>aips0</string>
+   </property>
+  </action>
+  <action name="actionSetColorCool">
+   <property name="text">
+    <string>Cool</string>
+   </property>
+  </action>
+  <action name="actionSetColorRainbow">
+   <property name="text">
+    <string>Rainbow</string>
+   </property>
+  </action>
+  <action name="actionColorspaceEdit">
+   <property name="text">
+    <string>Edit</string>
+   </property>
+  </action>
+  <action name="actionColorspaceSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionColorspaceLoad">
+   <property name="text">
+    <string>Load...</string>
+   </property>
+  </action>
+  <action name="actionViewProject_Panel">
+   <property name="text">
+    <string>Project Panel</string>
+   </property>
+  </action>
+  <action name="actionViewThumbnail">
+   <property name="text">
+    <string>Thumbnail</string>
+   </property>
+  </action>
+  <action name="actionViewMagnifier_View">
+   <property name="text">
+    <string>Magnifier View</string>
+   </property>
+  </action>
+  <action name="actionViewInfo_Panel">
+   <property name="text">
+    <string>Info Panel</string>
+   </property>
+  </action>
+  <action name="actionViewColor_Map">
+   <property name="text">
+    <string>Color Map</string>
+   </property>
+  </action>
+  <action name="actionViewSingleFrames">
+   <property name="text">
+    <string>Single</string>
+   </property>
+  </action>
+  <action name="actionViewTiledFrames">
+   <property name="text">
+    <string>Tiled</string>
+   </property>
+  </action>
+  <action name="actionFITS_FlipHorizontal">
+   <property name="text">
+    <string>Flip Horizontal</string>
+   </property>
+  </action>
+  <action name="actionFITS_FlipVertical">
+   <property name="text">
+    <string>Flip Vertical</string>
+   </property>
+  </action>
+  <action name="actionFITS_Rotate_90_CW">
+   <property name="text">
+    <string>Rotate 90° CW</string>
+   </property>
+  </action>
+  <action name="actionFITS_Rotate_90_CCW">
+   <property name="text">
+    <string>Rotate 90° CCW</string>
+   </property>
+  </action>
+  <action name="actionFITS_Rotate_180">
+   <property name="text">
+    <string>Rotate 180°</string>
+   </property>
+  </action>
+  <action name="actionFITS_Crop_to_Selection">
+   <property name="text">
+    <string>Crop to Selection</string>
+   </property>
+  </action>
+  <action name="actionViewTool_Box">
+   <property name="text">
+    <string>Tool Box</string>
+   </property>
+  </action>
+  <action name="actionStripe_Scaling">
+   <property name="text">
+    <string>Tile/Stripe Scaling...</string>
+   </property>
+  </action>
+  <action name="actionSpline_Interpolation">
+   <property name="text">
+    <string>Spline Interpolation</string>
+   </property>
+  </action>
+  <action name="actionScale_TileStripe">
+   <property name="text">
+    <string>Tile / Stripe</string>
+   </property>
+  </action>
+  <action name="actionScale_SplineTerp">
+   <property name="text">
+    <string>Spline Interpolation</string>
+   </property>
+  </action>
+  <action name="actionViewMeasurements">
+   <property name="text">
+    <string>Measurements</string>
+   </property>
+  </action>
+  <action name="actionMean_Horizontal">
+   <property name="text">
+    <string>Horizontal</string>
+   </property>
+  </action>
+  <action name="actionMean_Vertical">
+   <property name="text">
+    <string>Vertical</string>
+   </property>
+  </action>
+  <action name="actionMean_Custom">
+   <property name="text">
+    <string>Custom Region</string>
+   </property>
+  </action>
+  <action name="actionMedian_Horizontal">
+   <property name="text">
+    <string>Horizontal</string>
+   </property>
+  </action>
+  <action name="actionMedian_Vertical">
+   <property name="text">
+    <string>Vertical</string>
+   </property>
+  </action>
+  <action name="actionMedian_Custom">
+   <property name="text">
+    <string>Custom Region</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
