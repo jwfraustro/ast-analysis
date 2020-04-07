@@ -52,118 +52,6 @@ class MainWindow(QMainWindow, main_window.Ui_MainWindow):
         # TODO
         return
 
-    def undo_edit(self):
-        # TODO
-        return
-
-    def redo_edit(self):
-        # TODO
-        return
-
-    def revert_changes(self):
-        # TODO
-        return
-
-    def cut_project_file(self):
-        # TODO
-        return
-
-    def copy_project_file(self):
-        # TODO
-        return
-
-    def paste_project_file(self):
-        # TODO
-        return
-
-    def rename_project_file(self):
-        # TODO
-        return
-
-    def view_project_panel(self):
-        # TODO
-        return
-
-    def view_info_panel(self):
-        # TODO
-        return
-
-    def view_thumbnail(self):
-        # TODO
-        return
-
-    def view_magnifier(self):
-        # TODO
-        return
-
-    def view_colorbar(self):
-        # TODO
-        return
-
-    def view_single_frame(self):
-        # TODO
-        return
-
-    def view_tiled_frames(self):
-        # TODO
-        return
-
-    def reset_zoom(self):
-        # TODO
-        return
-
-    def zoom_in(self):
-        # TODO
-        return
-
-    def zoom_out(self):
-        # TODO
-        return
-
-    def zoom_selection(self):
-        # TODO
-        return
-
-    def set_zoom(self, zoom_level):
-        # TODO
-        return
-
-    def set_custom_zoom(self):
-        # TODO
-        return
-
-    def reset_view_rotate(self):
-        # TODO
-        return
-
-    def view_flip_horizontal(self):
-        # TODO
-        return
-
-    def view_flip_vertical(self):
-        # TODO
-        return
-
-    def view_rotate(self, angle):
-        # TODO
-        return
-
-    def custom_view_rotate(self):
-        # TODO
-        return
-
-    def center_image_view(self):
-        # TODO
-        return
-
-    def center_selection_view(self):
-        # TODO
-        return
-
-    def fullscreen_view(self):
-        # TODO
-        return
-
     def set_colorspace(self, colorspace):
         # TODO
         return
@@ -181,10 +69,6 @@ class MainWindow(QMainWindow, main_window.Ui_MainWindow):
         return
 
     def set_mag_scale(self, scale):
-        # TODO
-        return
-
-    def new_fits_file(self):
         # TODO
         return
 
@@ -215,31 +99,11 @@ class MainWindow(QMainWindow, main_window.Ui_MainWindow):
 
         return
 
-    def save_fits_file(self):
-        # TODO
-        return
-
     def save_as_fits_file(self):
         # TODO
         return
 
     def export_fits(self, filetype):
-        # TODO
-        return
-
-    def fits_flip_horiz(self):
-        # TODO
-        return
-
-    def fits_flip_vert(self):
-        # TODO
-        return
-
-    def fits_rotate(self, angle):
-        # TODO
-        return
-
-    def fits_crop_to_selection(self):
         # TODO
         return
 
@@ -343,10 +207,6 @@ class MainWindow(QMainWindow, main_window.Ui_MainWindow):
         # TODO
         return
 
-    def getting_started(self):
-        # TODO
-        return
-
     def submit_bug_report(self):
         # TODO
         return
@@ -365,51 +225,6 @@ class MainWindow(QMainWindow, main_window.Ui_MainWindow):
         self.actionImport_Settings.triggered.connect(self.import_settings)
         self.actionExport_Settings.triggered.connect(self.export_settings)
         self.actionExit_Program.triggered.connect(self.exit_app)
-
-        self.actionUndo_Edit.triggered.connect(self.undo_edit)
-        self.actionRedo_Edit.triggered.connect(self.redo_edit)
-        self.actionRevert_Changes.triggered.connect(self.revert_changes)
-        self.actionEditCut_File.triggered.connect(self.cut_project_file)
-        self.actionEditCopy_File.triggered.connect(self.copy_project_file)
-        self.actionEditPaste_File.triggered.connect(self.paste_project_file)
-        self.actionRename_File.triggered.connect(self.rename_project_file)
-
-        self.actionViewProject_Panel.triggered.connect(self.view_project_panel)
-        self.actionViewInfo_Panel.triggered.connect(self.view_info_panel)
-        self.actionViewThumbnail.triggered.connect(self.view_thumbnail)
-        self.actionViewMagnifier_View.triggered.connect(self.view_magnifier)
-        self.actionViewColor_Map.triggered.connect(self.view_colorbar)
-        self.actionViewSingleFrames.triggered.connect(self.view_single_frame)
-        self.actionViewTiledFrames.triggered.connect(self.view_tiled_frames)
-
-        self.actionResetView_Zoom.triggered.connect(self.reset_zoom)
-        self.actionViewZoomIn.triggered.connect(self.zoom_in)
-        self.actionViewZoomOut.triggered.connect(self.zoom_out)
-        self.actionViewZoomToSelection.triggered.connect(self.zoom_selection)
-        self.actionViewZoom1600.triggered.connect(lambda: self.set_zoom(1600))
-        self.actionViewZoom800.triggered.connect(lambda: self.set_zoom(800))
-        self.actionViewZoom400.triggered.connect(lambda: self.set_zoom(400))
-        self.actionViewZoom200.triggered.connect(lambda: self.set_zoom(200))
-        self.actionViewZoom100.triggered.connect(lambda: self.set_zoom(100))
-        self.actionViewZoom50.triggered.connect(lambda: self.set_zoom(50))
-        self.actionViewZoom25.triggered.connect(lambda: self.set_zoom(25))
-        self.actionViewZoom12.triggered.connect(lambda: self.set_zoom(12))
-        self.actionViewZoom6.triggered.connect(lambda: self.set_zoom(6))
-        self.actionViewCustomZoom.triggered.connect(self.set_custom_zoom)
-
-        self.actionResetViewFlipRotate.triggered.connect(self.reset_view_rotate)
-        self.actionViewFlip_Horizontal.triggered.connect(self.view_flip_horizontal)
-        self.actionViewFlip_Vertical.triggered.connect(self.view_flip_vertical)
-        self.actionViewRotate_15_CCW.triggered.connect(lambda: self.view_rotate(-15))
-        self.actionViewRotate_15_CW.triggered.connect(lambda: self.view_rotate(15))
-        self.actionViewRotate_90_CW.triggered.connect(lambda: self.view_rotate(90))
-        self.actionViewRotate_90_CCW.triggered.connect(lambda: self.view_rotate(-90))
-        self.actionViewRotate_180.triggered.connect(lambda: self.view_rotate(180))
-        self.actionViewOtherRotateAngle.triggered.connect(self.custom_view_rotate)
-
-        self.actionViewCenterImage.triggered.connect(self.center_image_view)
-        self.actionViewCenterSelection.triggered.connect(self.center_selection_view)
-        self.actionViewFullscreen.triggered.connect(self.fullscreen_view)
 
         self.actionSetColorGreyscale.triggered.connect(lambda: self.set_colorspace('greyscale'))
         self.actionSetColorBlack_Body.triggered.connect(lambda: self.set_colorspace('blackbody'))
@@ -432,24 +247,15 @@ class MainWindow(QMainWindow, main_window.Ui_MainWindow):
         self.actionViewScaleMin_Max.triggered.connect(lambda: self.set_mag_scale('min_max'))
         self.actionViewScaleZ_Scale.triggered.connect(lambda: self.set_mag_scale('z'))
 
-        self.actionNew_FITS.triggered.connect(self.new_fits_file)
         self.actionFITS_Open.triggered.connect(self.open_fits_file)
-        self.actionFITS_Save.triggered.connect(self.save_fits_file)
         self.actionFITS_SaveAs.triggered.connect(self.save_as_fits_file)
 
         self.actionExportPNG.triggered.connect(lambda: self.export_fits('PNG'))
         self.actionExportJPG.triggered.connect(lambda: self.export_fits('JPG'))
         self.actionExportGIF.triggered.connect(lambda: self.export_fits('GIF'))
 
-        self.actionFITS_FlipHorizontal.triggered.connect(self.fits_flip_horiz)
-        self.actionFITS_FlipVertical.triggered.connect(self.fits_flip_vert)
-        self.actionFITS_Rotate_90_CW.triggered.connect(lambda: self.fits_rotate(90))
-        self.actionFITS_Rotate_90_CCW.triggered.connect(lambda: self.fits_rotate(-90))
-        self.actionFITS_Rotate_180.triggered.connect(lambda: self.fits_rotate(180))
-        self.actionFITS_Crop_to_Selection.triggered.connect(self.fits_crop_to_selection)
         self.actionHeaders_View.triggered.connect(self.view_fits_headers)
         self.actionHeaders_Edit.triggered.connect(self.edit_fits_headers)
-        self.actionFITS_Close.triggered.connect(self.close_fits_file)
 
         self.actionNR_MedComb.triggered.connect(self.med_comb)
         self.actionNR_NormMedComb.triggered.connect(self.norm_med_comb)
@@ -481,6 +287,5 @@ class MainWindow(QMainWindow, main_window.Ui_MainWindow):
         self.actionViewMeasurements.triggered.connect(self.view_measurements)
 
         self.actionHelp.triggered.connect(self.get_help)
-        self.actionGetting_Started.triggered.connect(self.getting_started)
         self.actionSubmit_Bug_Report_Feedback.triggered.connect(self.submit_bug_report)
         self.actionAbout.triggered.connect(self.about)

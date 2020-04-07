@@ -226,64 +226,10 @@
     <addaction name="separator"/>
     <addaction name="actionExit_Program"/>
    </widget>
-   <widget class="QMenu" name="menuEdit">
-    <property name="title">
-     <string>Edit</string>
-    </property>
-    <addaction name="actionUndo_Edit"/>
-    <addaction name="actionRedo_Edit"/>
-    <addaction name="actionRevert_Changes"/>
-    <addaction name="separator"/>
-    <addaction name="actionEditCut_File"/>
-    <addaction name="actionEditCopy_File"/>
-    <addaction name="actionEditPaste_File"/>
-    <addaction name="separator"/>
-    <addaction name="actionRename_File"/>
-   </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
      <string>View</string>
     </property>
-    <widget class="QMenu" name="menuZoom">
-     <property name="title">
-      <string>Zoom</string>
-     </property>
-     <addaction name="actionResetView_Zoom"/>
-     <addaction name="actionViewZoomIn"/>
-     <addaction name="actionViewZoomOut"/>
-     <addaction name="actionViewZoomToSelection"/>
-     <addaction name="separator"/>
-     <addaction name="actionViewFit_to_Window"/>
-     <addaction name="separator"/>
-     <addaction name="actionViewZoom1600"/>
-     <addaction name="actionViewZoom800"/>
-     <addaction name="actionViewZoom400"/>
-     <addaction name="actionViewZoom200"/>
-     <addaction name="actionViewZoom100"/>
-     <addaction name="actionViewZoom50"/>
-     <addaction name="actionViewZoom25"/>
-     <addaction name="actionViewZoom12"/>
-     <addaction name="actionViewZoom6"/>
-     <addaction name="separator"/>
-     <addaction name="actionViewCustomZoom"/>
-    </widget>
-    <widget class="QMenu" name="menuFlip_Rotate">
-     <property name="title">
-      <string>Flip / Rotate</string>
-     </property>
-     <addaction name="actionResetViewFlipRotate"/>
-     <addaction name="separator"/>
-     <addaction name="actionViewFlip_Horizontal"/>
-     <addaction name="actionViewFlip_Vertical"/>
-     <addaction name="separator"/>
-     <addaction name="actionViewRotate_15_CW"/>
-     <addaction name="actionViewRotate_15_CCW"/>
-     <addaction name="actionViewRotate_90_CW"/>
-     <addaction name="actionViewRotate_90_CCW"/>
-     <addaction name="actionViewRotate_180"/>
-     <addaction name="separator"/>
-     <addaction name="actionViewOtherRotateAngle"/>
-    </widget>
     <widget class="QMenu" name="menuScale">
      <property name="title">
       <string>Scale</string>
@@ -319,34 +265,6 @@
      <addaction name="separator"/>
      <addaction name="menuColorspace_Settings"/>
     </widget>
-    <widget class="QMenu" name="menuTool_Windows">
-     <property name="title">
-      <string>Tool Windows</string>
-     </property>
-     <addaction name="actionViewProject_Panel"/>
-     <addaction name="actionViewInfo_Panel"/>
-     <addaction name="actionViewThumbnail"/>
-     <addaction name="actionViewMagnifier_View"/>
-     <addaction name="actionViewColor_Map"/>
-    </widget>
-    <widget class="QMenu" name="menuFrames">
-     <property name="title">
-      <string>Frames</string>
-     </property>
-     <addaction name="actionViewSingleFrames"/>
-     <addaction name="actionViewTiledFrames"/>
-    </widget>
-    <addaction name="menuTool_Windows"/>
-    <addaction name="separator"/>
-    <addaction name="menuFrames"/>
-    <addaction name="separator"/>
-    <addaction name="menuZoom"/>
-    <addaction name="menuFlip_Rotate"/>
-    <addaction name="actionViewCenterImage"/>
-    <addaction name="actionViewCenterSelection"/>
-    <addaction name="separator"/>
-    <addaction name="actionViewFullscreen"/>
-    <addaction name="separator"/>
     <addaction name="menuColor_Space"/>
     <addaction name="menuScale"/>
    </widget>
@@ -437,7 +355,6 @@
      <string>Help</string>
     </property>
     <addaction name="actionHelp"/>
-    <addaction name="actionGetting_Started"/>
     <addaction name="separator"/>
     <addaction name="actionSubmit_Bug_Report_Feedback"/>
     <addaction name="separator"/>
@@ -462,32 +379,13 @@
      <addaction name="actionHeaders_View"/>
      <addaction name="actionHeaders_Edit"/>
     </widget>
-    <widget class="QMenu" name="menuTransform">
-     <property name="title">
-      <string>Transform</string>
-     </property>
-     <addaction name="actionFITS_FlipHorizontal"/>
-     <addaction name="actionFITS_FlipVertical"/>
-     <addaction name="separator"/>
-     <addaction name="actionFITS_Rotate_90_CW"/>
-     <addaction name="actionFITS_Rotate_90_CCW"/>
-     <addaction name="actionFITS_Rotate_180"/>
-    </widget>
-    <addaction name="actionNew_FITS"/>
     <addaction name="actionFITS_Open"/>
-    <addaction name="actionFITS_Save"/>
     <addaction name="actionFITS_SaveAs"/>
     <addaction name="menuExport"/>
     <addaction name="separator"/>
-    <addaction name="menuTransform"/>
-    <addaction name="actionFITS_Crop_to_Selection"/>
-    <addaction name="separator"/>
     <addaction name="menuHeaders"/>
-    <addaction name="separator"/>
-    <addaction name="actionFITS_Close"/>
    </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuEdit"/>
    <addaction name="menuView"/>
    <addaction name="menuFITS"/>
    <addaction name="menuProcess"/>
