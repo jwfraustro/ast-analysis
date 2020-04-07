@@ -2,8 +2,6 @@
 # TODO: Input/Output scripts
 from astropy.io import fits
 
-
-
 def new_project():
     # TODO
     return

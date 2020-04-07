@@ -1,5 +1,6 @@
 from ast_analysis.resources.forms.py import main_window
 from ast_analysis.common.scripts.io import open_fits_file
+import numpy as np
 
 from PyQt5.QtWidgets import QMainWindow, QFileDialog, QMessageBox
 from PyQt5.QtGui import QImage, QPixmap
@@ -208,8 +209,8 @@ class MainWindow(QMainWindow, main_window.Ui_MainWindow):
     def display_fits_file(self, file):
 
         #TODO
-
-        q_image=QImage(file['array'], file['array'].shape[0], file['array'].shape[1])
+        array_converted = np.float16(file['array'])
+        q_image=QImage(file['array'], file['array'].shape[0], file['array'].shape[1], QImage.Format_Grayscale16)
         self.img_lbl.setPixmap(QPixmap.fromImage(q_image))
 
         return
