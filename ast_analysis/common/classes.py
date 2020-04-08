@@ -132,6 +132,7 @@ class Project:
         self.lamp_frames.clear()
         return
 
+
 class FITS_File:
     def __init__(self, file_path):
         self.file_path = file_path

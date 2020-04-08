@@ -3,6 +3,7 @@ from ast_analysis.common.classes import Project
 
 from PyQt5.QtWidgets import QMainWindow, QFileDialog, QMessageBox
 from PyQt5.QtGui import QImage, QPixmap
+from pyqtgraph import ImageItem
 
 
 class MainWindow(QMainWindow, main_window.Ui_MainWindow):
@@ -14,6 +15,12 @@ class MainWindow(QMainWindow, main_window.Ui_MainWindow):
         self.setup_menu_actions()
 
         self.project = Project()
+        self.target_frame_lw.itemDoubleClicked.connect(self.display_target_frame)
+
+    def display_target_frame(self, item):
+        #TODO Error when handling file with more than one frame
+        frame_title = item.text()
+        self.frame_display.setImage(self.project.target_frame.frames)
 
     def update_frame_list_views(self):
 
