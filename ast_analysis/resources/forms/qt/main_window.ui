@@ -270,7 +270,7 @@
    </widget>
    <widget class="QMenu" name="menuProcess">
     <property name="title">
-     <string>Process</string>
+     <string>2.) Process</string>
     </property>
     <widget class="QMenu" name="menuNoise_Removal">
      <property name="title">
@@ -317,7 +317,7 @@
    </widget>
    <widget class="QMenu" name="menuAnalysis">
     <property name="title">
-     <string>Analysis</string>
+     <string>3.) Analysis</string>
     </property>
     <widget class="QMenu" name="menuSpectrum_Matching">
      <property name="title">
@@ -360,36 +360,70 @@
     <addaction name="separator"/>
     <addaction name="actionAbout"/>
    </widget>
-   <widget class="QMenu" name="menuFITS">
+   <widget class="QMenu" name="menuLoadFiles">
     <property name="title">
-     <string>FITS</string>
+     <string>1.) Load Files</string>
     </property>
-    <widget class="QMenu" name="menuExport">
+    <widget class="QMenu" name="menu1_1_Target_Frame">
      <property name="title">
-      <string>Export As...</string>
+      <string>1.1) Target Frame</string>
      </property>
-     <addaction name="actionExportPNG"/>
-     <addaction name="actionExportJPG"/>
-     <addaction name="actionExportGIF"/>
+     <addaction name="actionOpenTargetFrame"/>
+     <addaction name="separator"/>
+     <addaction name="actionClearTargetFrame"/>
     </widget>
-    <widget class="QMenu" name="menuHeaders">
+    <widget class="QMenu" name="menu1_2_Flat_Frames">
      <property name="title">
-      <string>Headers...</string>
+      <string>1.2) Flat Frames</string>
      </property>
-     <addaction name="actionHeaders_View"/>
-     <addaction name="actionHeaders_Edit"/>
+     <addaction name="actionAddFlatFrame"/>
+     <addaction name="actionDeleteFlatFrame"/>
+     <addaction name="separator"/>
+     <addaction name="actionClearFlatFrame"/>
     </widget>
-    <addaction name="actionFITS_Open"/>
-    <addaction name="actionFITS_SaveAs"/>
-    <addaction name="menuExport"/>
+    <widget class="QMenu" name="menu1_3_Bias_Frames">
+     <property name="title">
+      <string>1.3) Bias Frames</string>
+     </property>
+     <addaction name="actionAddBiasFrame"/>
+     <addaction name="actionDeleteBiasFrame"/>
+     <addaction name="separator"/>
+     <addaction name="actionClearBiasFrames"/>
+    </widget>
+    <widget class="QMenu" name="menuLamp_Ref_Frames_opt">
+     <property name="title">
+      <string>Lamp Ref Frames (opt.)</string>
+     </property>
+     <addaction name="actionOpenLampFrame"/>
+     <addaction name="actionClearLampFrame"/>
+    </widget>
+    <addaction name="menu1_1_Target_Frame"/>
+    <addaction name="menu1_2_Flat_Frames"/>
+    <addaction name="menu1_3_Bias_Frames"/>
     <addaction name="separator"/>
-    <addaction name="menuHeaders"/>
+    <addaction name="menuLamp_Ref_Frames_opt"/>
+   </widget>
+   <widget class="QMenu" name="menu4_Export">
+    <property name="title">
+     <string>4.) Export</string>
+    </property>
+    <widget class="QMenu" name="menuFITS_Frame">
+     <property name="title">
+      <string>FITS Frame</string>
+     </property>
+     <addaction name="actionasExportFITS_PNG"/>
+     <addaction name="actionasExportFITS_JPG"/>
+     <addaction name="separator"/>
+     <addaction name="actionExportFITS_File"/>
+    </widget>
+    <addaction name="menuFITS_Frame"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
-   <addaction name="menuFITS"/>
+   <addaction name="menuLoadFiles"/>
    <addaction name="menuProcess"/>
    <addaction name="menuAnalysis"/>
+   <addaction name="menu4_Export"/>
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionNew_Project">
@@ -990,6 +1024,71 @@
   <action name="actionMedian_Custom">
    <property name="text">
     <string>Custom Region</string>
+   </property>
+  </action>
+  <action name="actionOpenTargetFrame">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionClearTargetFrame">
+   <property name="text">
+    <string>Clear</string>
+   </property>
+  </action>
+  <action name="actionAddFlatFrame">
+   <property name="text">
+    <string>Add</string>
+   </property>
+  </action>
+  <action name="actionDeleteFlatFrame">
+   <property name="text">
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionClearFlatFrame">
+   <property name="text">
+    <string>Clear</string>
+   </property>
+  </action>
+  <action name="actionAddBiasFrame">
+   <property name="text">
+    <string>Add</string>
+   </property>
+  </action>
+  <action name="actionDeleteBiasFrame">
+   <property name="text">
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionClearBiasFrames">
+   <property name="text">
+    <string>Clear</string>
+   </property>
+  </action>
+  <action name="actionOpenLampFrame">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionClearLampFrame">
+   <property name="text">
+    <string>Clear</string>
+   </property>
+  </action>
+  <action name="actionasExportFITS_PNG">
+   <property name="text">
+    <string>as PNG</string>
+   </property>
+  </action>
+  <action name="actionasExportFITS_JPG">
+   <property name="text">
+    <string>as JPG</string>
+   </property>
+  </action>
+  <action name="actionExportFITS_File">
+   <property name="text">
+    <string>as FITS file</string>
    </property>
   </action>
  </widget>

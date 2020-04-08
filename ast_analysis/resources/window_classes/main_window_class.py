@@ -1,6 +1,5 @@
 from ast_analysis.resources.forms.py import main_window
-from ast_analysis.common.scripts.io import open_fits_file
-import numpy as np
+from ast_analysis.common.classes import Project
 
 from PyQt5.QtWidgets import QMainWindow, QFileDialog, QMessageBox
 from PyQt5.QtGui import QImage, QPixmap
@@ -14,7 +13,7 @@ class MainWindow(QMainWindow, main_window.Ui_MainWindow):
 
         self.setup_menu_actions()
 
-        self.fits_files = []
+        self.project = Project()
 
     def create_new_project(self):
         # TODO
@@ -72,50 +71,56 @@ class MainWindow(QMainWindow, main_window.Ui_MainWindow):
         # TODO
         return
 
-    def open_fits_file(self):
-        # TODO
+    def open_target_fram(self):
+        #TODO
+        return
 
-        file_path, _ = QFileDialog.getOpenFileName(self, "Open FITS File", filter="*.fits")
+    def clear_target_frame(self):
+        #TODO
+        return
 
-        array, headers, msg = open_fits_file(file_path)
+    def add_bias_frames(self):
+        #TODO
+        return
 
-        if msg:
-            QMessageBox.information(self, "Error Opening FITS file", msg, QMessageBox.Ok)
+    def delete_bias_frames(self):
+        #TODO
+        return
 
-        image = {'file_path':file_path,'array':array, 'headers':headers}
+    def clear_bias_frames(self):
+        #TODO
+        return
 
-        self.fits_files.append(image)
+    def add_flat_frames(self):
+        #TODO
+        return
 
-        self.display_fits_file(image)
+    def clear_flat_frames(self):
+        #TODO
+        return
 
+    def delete_flat_frames(self):
+        #TODO
+        return
+
+    def open_lamp_frame(self):
+        #TODO
+        return
+    
+    def clear_lamp_frame(self):
+        #TODO
         return
 
     def display_fits_file(self, file):
 
         #TODO
-        array_converted = np.float16(file['array'])
-        q_image=QImage(file['array'], file['array'].shape[0], file['array'].shape[1], QImage.Format_Grayscale16)
-        self.img_lbl.setPixmap(QPixmap.fromImage(q_image))
+        # array_converted = np.float16(file['array'])
+        # q_image=QImage(file['array'], file['array'].shape[0], file['array'].shape[1], QImage.Format_Grayscale16)
+        # self.img_lbl.setPixmap(QPixmap.fromImage(q_image))
 
-        return
-
-    def save_as_fits_file(self):
-        # TODO
         return
 
     def export_fits(self, filetype):
-        # TODO
-        return
-
-    def view_fits_headers(self):
-        # TODO
-        return
-
-    def edit_fits_headers(self):
-        # TODO
-        return
-
-    def close_fits_file(self):
         # TODO
         return
 
@@ -247,15 +252,16 @@ class MainWindow(QMainWindow, main_window.Ui_MainWindow):
         self.actionViewScaleMin_Max.triggered.connect(lambda: self.set_mag_scale('min_max'))
         self.actionViewScaleZ_Scale.triggered.connect(lambda: self.set_mag_scale('z'))
 
-        self.actionFITS_Open.triggered.connect(self.open_fits_file)
-        self.actionFITS_SaveAs.triggered.connect(self.save_as_fits_file)
-
-        self.actionExportPNG.triggered.connect(lambda: self.export_fits('PNG'))
-        self.actionExportJPG.triggered.connect(lambda: self.export_fits('JPG'))
-        self.actionExportGIF.triggered.connect(lambda: self.export_fits('GIF'))
-
-        self.actionHeaders_View.triggered.connect(self.view_fits_headers)
-        self.actionHeaders_Edit.triggered.connect(self.edit_fits_headers)
+        self.actionOpenTargetFrame.triggered.connect(self.open_target_frame)
+        self.actionClearTargetFrame.triggered.connect(self.clear_target_frame)
+        self.actionAddBiasFrame.triggered.connect(self.add_bias_frames)
+        self.actionDeleteBiasFrame.triggered.connect(self.delete_bias_frames)
+        self.actionClearBiasFrames.triggered.connect(self.clear_bias_frames)
+        self.actionAddFlatFrame.triggered.connect(self.add_flat_frames)
+        self.actionClearFlatFrame.triggered.connect(self.clear_flat_frames)
+        self.actionDeleteFlatFrame.triggered.connect(self.delete_flat_frames)
+        self.actionOpenLampFrame.triggered.connect(self.open_lamp_frame)
+        self.actionClearLampFrame.triggered.connect(self.clear_lamp_frame)
 
         self.actionNR_MedComb.triggered.connect(self.med_comb)
         self.actionNR_NormMedComb.triggered.connect(self.norm_med_comb)
