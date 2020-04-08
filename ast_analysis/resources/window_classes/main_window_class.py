@@ -15,20 +15,81 @@ class MainWindow(QMainWindow, main_window.Ui_MainWindow):
 
         self.project = Project()
 
+    def update_frame_list_views(self):
+
+        self.target_frame_lw.clear()
+        self.bias_frame_lw.clear()
+        self.flat_frame_lw.clear()
+        self.specref_lw.clear()
+
+        if self.project.target_frame:
+            self.target_frame_lw.addItem(self.project.target_frame.file_name)
+        if self.project.bias_frames:
+            self.bias_frame_lw.addItems([bias_frame.file_name for bias_frame in self.project.bias_frames])
+        if self.project.flat_frames:
+            self.flat_frame_lw.addItems([flat_frame.file_name for flat_frame in self.project.flat_frames])
+        if self.project.lamp_frames:
+            self.specref_lw.addItems([lamp_frame.file_name for lamp_frame in self.project.lamp_frames])
+
+        return
+
     def create_new_project(self):
-        # TODO
+
+        if not self.project.is_empty():
+            warn_msg = QMessageBox.warning(self, "Save Current Project","Would you like to save your current project?",QMessageBox.Yes|QMessageBox.No)
+            if warn_msg == QMessageBox.Ok:
+                if self.project.file_path:
+                    self.save_project()
+                if not self.project.file_path:
+                    self.save_project_as()
+
+        self.project.clear_project()
+        self.update_frame_list_views()
+
         return
 
     def open_project(self):
-        # TODO
+
+        if not self.project.is_empty():
+            warn_msg = QMessageBox.warning(self, "Save Current Project","Would you like to save your current project?",QMessageBox.Yes|QMessageBox.No)
+            if warn_msg == QMessageBox.Ok:
+                if self.project.file_path:
+                    self.save_project()
+                if not self.project.file_path:
+                    self.save_project_as()
+
+        file_path, _ = QFileDialog.getOpenFileName(self, "Open Project", filter="*ast-proj")
+
+        if not file_path:
+            return
+
+        self.project.open_project(file_path)
+        self.update_frame_list_views()
+
         return
 
     def save_project(self):
-        # TODO
+
+        if not self.project.file_path:
+            self.save_project_as()
+        else:
+            self.project.save()
+
         return
 
     def save_project_as(self):
-        # TODO
+
+        file_path, _ = QFileDialog.getSaveFileName(self, "Save Project As")
+
+        if not file_path:
+            return
+
+        file_path += ".ast-proj"
+
+        self.project.file_path = file_path
+
+        self.project.save()
+
         return
 
     def close_project(self):
@@ -71,16 +132,41 @@ class MainWindow(QMainWindow, main_window.Ui_MainWindow):
         # TODO
         return
 
-    def open_target_fram(self):
-        #TODO
+    def open_target_frame(self):
+        if self.project.target_frame:
+            overide_msg = QMessageBox.question(self, "Replace existing frame?", "Loading a new target frame will replace the current frame.", QMessageBox.Ok|QMessageBox.Cancel)
+            if overide_msg == QMessageBox.Cancel:
+                return
+        file_name, _ = QFileDialog.getOpenFileName(self, "Open Target Frame", filter="*.fits")
+        if file_name:
+            self.project.load_target_frame(file_name)
+        self.update_frame_list_views()
+        self.proj_files_tb.setCurrentIndex(0)
         return
 
     def clear_target_frame(self):
-        #TODO
+
+        if not self.project.target_frame:
+            QMessageBox.information(self, "No Target Frame", "No target frame is currently loaded.", QMessageBox.Ok)
+            return
+
+        warn_msg = QMessageBox.question(self, "Clear Targeet Frame", "Are you sure you want to clear the target frame?", QMessageBox.Ok|QMessageBox.Cancel)
+
+        if warn_msg == QMessageBox.Ok:
+            self.project.clear_target_frame()
+            self.update_frame_list_views()
+            self.proj_files_tb.setCurrentIndex(0)
         return
 
     def add_bias_frames(self):
-        #TODO
+        file_names, _ = QFileDialog.getOpenFileNames(self, "Add Bias Frames", filter="*.fits")
+
+        if not file_names:
+            return
+
+        self.project.load_bias_frames(file_names)
+        self.update_frame_list_views()
+        self.proj_files_tb.setCurrentIndex(2)
         return
 
     def delete_bias_frames(self):
@@ -88,15 +174,40 @@ class MainWindow(QMainWindow, main_window.Ui_MainWindow):
         return
 
     def clear_bias_frames(self):
-        #TODO
+        if not self.project.bias_frames:
+            QMessageBox.information(self, "No Bias Frames Loaded","No bias frames are currently loaded.", QMessageBox.Ok)
+            return
+
+        warn_msg = QMessageBox.warning(self, "Clear Bias Frames","Are you sure you want to clear all bias frames?", QMessageBox.Yes|QMessageBox.No)
+        if warn_msg == QMessageBox.Yes:
+            self.project.clear_bias_frames()
+            self.update_frame_list_views()
+            self.proj_files_tb.setCurrentIndex(2)
+
         return
 
     def add_flat_frames(self):
-        #TODO
+        file_names, _ = QFileDialog.getOpenFileNames(self, "Add Flat Frames", filter="*.fits")
+
+        if not file_names:
+            return
+
+        self.project.load_flat_frames(file_names)
+        self.update_frame_list_views()
+        self.proj_files_tb.setCurrentIndex(1)
         return
 
     def clear_flat_frames(self):
-        #TODO
+        if not self.project.flat_frames:
+            QMessageBox.information(self, "No Flat Frames Loaded","No flat frames are currently loaded.", QMessageBox.Ok)
+            return
+
+        warn_msg = QMessageBox.warning(self, "Clear Flat Frames","Are you sure you want to clear all flat frames?", QMessageBox.Yes|QMessageBox.No)
+        if warn_msg == QMessageBox.Yes:
+            self.project.clear_flat_frames()
+            self.update_frame_list_views()
+            self.proj_files_tb.setCurrentIndex(1)
+
         return
 
     def delete_flat_frames(self):
@@ -104,11 +215,27 @@ class MainWindow(QMainWindow, main_window.Ui_MainWindow):
         return
 
     def open_lamp_frame(self):
-        #TODO
+        file_names, _ = QFileDialog.getOpenFileNames(self, "Add Lamp Frames", filter="*.fits")
+
+        if not file_names:
+            return
+
+        self.project.load_lamp_frames(file_names)
+        self.update_frame_list_views()
+        self.proj_files_tb.setCurrentIndex(3)
         return
     
     def clear_lamp_frame(self):
-        #TODO
+        if not self.project.lamp_frames:
+            QMessageBox.information(self, "No Lamp Frames Loaded","No lamp frames are currently loaded.", QMessageBox.Ok)
+            return
+
+        warn_msg = QMessageBox.warning(self, "Clear Lamp Frames","Are you sure you want to clear all lamp frames?", QMessageBox.Yes|QMessageBox.No)
+        if warn_msg == QMessageBox.Yes:
+            self.project.clear_lamp_frame()
+            self.update_frame_list_views()
+            self.proj_files_tb.setCurrentIndex(3)
+
         return
 
     def display_fits_file(self, file):
