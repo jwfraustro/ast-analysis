@@ -5,7 +5,6 @@ from PyQt5.QtWidgets import QMainWindow, QFileDialog, QMessageBox
 from PyQt5.QtGui import QImage, QPixmap
 from pyqtgraph import ImageItem
 
-
 class MainWindow(QMainWindow, main_window.Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
@@ -15,12 +14,40 @@ class MainWindow(QMainWindow, main_window.Ui_MainWindow):
         self.setup_menu_actions()
 
         self.project = Project()
+        self.current_image = None
+        self.current_frame = None
         self.target_frame_lw.itemDoubleClicked.connect(self.display_target_frame)
+
+        self.view_box = self.frame_display.addViewBox()
+
+        self.frame_display.scene().sigMouseMoved.connect(self.mouseMoved)
+
+    def mouseMoved(self, event):
+
+        if self.current_image:
+            data = self.current_image.image
+            rows, cols = data.shape
+
+            pos = self.current_image.mapFromScene(event)
+            row, col = int(pos.y()), int(pos.x())
+
+            if (0 <= row < rows) and (0 <= col < cols):
+                value = data[row, col]
+                self.pixel_val_lbl.setText(str(value))
+                self.pixel_pos_lbl.setText("(%s,%s)"%(str(row),str(col)))
+            else:
+                self.pixel_val_lbl.setText("N/A")
 
     def display_target_frame(self, item):
         #TODO Error when handling file with more than one frame
-        frame_title = item.text()
-        self.frame_display.setImage(self.project.target_frame.frames)
+
+        # self.frame_display.setImage(self.project.target_frame.frames)
+        self.current_image = ImageItem(self.project.target_frame.frames)
+        self.current_frame = self.project.target_frame
+        self.view_box.clear()
+        self.view_box.addItem(self.current_image)
+
+        return
 
     def update_frame_list_views(self):
 
